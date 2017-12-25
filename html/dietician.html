@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>菜永康营养师平台</title>
+
+    <script type="text/javascript" src="../js/md5.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/dietician.js"></script>
+    <script type="text/javascript" src="../js/dishes.js"></script>
+    <script type="text/javascript" src="../js/meals.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/dietician.css">
+</head>
+
+<body>
+    <ul id="tabMenu" class="nav nav-tabs" role="tablist">
+        <li id="mealTab" role="presentation" class="menuTab active">
+            <a href="#meals" class="tab-title" role="tab" data-toggle="tab">套餐</a>
+        </li>
+        <li id="dishTab" role="presentation" class="menuTab">
+            <a href="#dishes" role="tab" class="tab-title" data-toggle="tab">菜式</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active common-tab" id="meals">
+            <div class="toolbar row">
+                <div class="col-xs-0 col-sm-9"></div>
+                <div class="col-xs-6 col-sm-1">
+                    <button id="mealComposeRefresh" type="button" class="btn btn-success" onclick="refreshMeals()">
+                        <span class="glyphicon glyphicon-refresh"></span> 刷新
+                    </button>
+                </div>
+                <div class="col-xs-6 col-sm-1">
+                    <button id="mealComposeAdd" type="button" class="btn btn-info" data-toggle="modal" data-target=".addMealModal-modal-lg">
+                        <span class="glyphicon glyphicon-plus"></span> 添加
+                    </button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="panel-group" id="mealComposes">
+                    
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane common-tab" id="dishes">
+            <div class="toolbar row">
+                <div class="col-xs-0 col-sm-6"></div>
+                <div class="col-xs-4 col-sm-1">
+                    <button id="dishComposeRefresh" type="button" class="btn btn-success" onclick="refreshDishes()">
+                        <span class="glyphicon glyphicon-refresh"></span> 刷新
+                    </button>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <button id="dishComposeAdd" type="button" class="btn btn-info" onclick="addDishes()">
+                        <span class="glyphicon glyphicon-plus"></span> 添加
+                    </button>
+                </div>
+                <div class="col-xs-4 col-sm-3 input-group ">
+                    <input id="search" type="text" class="form-control" placeholder="请输入菜名"/>
+                    <span class="input-group-btn">
+                   <button id="dishComposeSearch" class="btn btn-primary btn-search" onclick="searchDishes()">
+                       <span class="glyphicon glyphicon-zoom-in"></span> 搜索
+                   </button>
+                </span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="panel-group" id="dishComposes">
+                </div>
+            </div>
+            <div id="dishComposeModalContainer"></div>
+        </div>
+    </div>
+    <div id="mealComposeModalContainer">
+
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-4">用户名: </div>
+                        <div class="col-xs-8">
+                            <input id="username" />
+                            <span id="enterUsernameWarning" class="warning">请输入用户名</span>
+                        </div>
+                        <div class="col-xs-4">密码: </div>
+                        <div class="col-xs-8">
+                            <input type="password" id="password" />
+                            <span id="enterPasswordWarning" class="warning">请输入密码</span>
+                        </div>
+                    </div>
+                    <div id="notMatchWarning" class="warning">用户名和密码不匹配</div>
+                    <div id="notConnectedWarning" class="warning">无法连接服务器</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button id="loginButton" type="button" class="btn btn-primary">
+                        登陆
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addDishModal"></div>
+    <div id="updateMealModal"></div>
+   
+
+    <div class="modal fade" id="delcfmModel">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确认要删除吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteSure" onclick="deleteSure()" class="btn btn-default" data-dismiss="modal">确定</button>
+                    <button  type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delcfmMealModel">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>您确认要删除吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteMealSure" onclick="deleteMealDate()" class="btn btn-default" data-dismiss="modal">确定</button>
+                    <button  type="button" class="btn btn-success" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

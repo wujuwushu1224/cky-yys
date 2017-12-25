@@ -1,0 +1,140 @@
+.nav-tabs {
+    padding-left: 1rem;
+    font-size: 2rem;
+}
+
+.nav-tabs .tab-title {
+    padding: 0.5rem 2rem;
+}
+
+.common-tab .toolbar {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    background-color: #f0f8ff;
+}
+
+.common-tab .toolbar img {
+    width: 3rem;
+    height: 3rem;
+}
+
+.common-tab .content {
+    margin: 0.5rem 1rem;
+}
+
+#meals .content .meal-item-name {
+    line-height: 3rem;
+}
+
+#meals .content .meal-item-name .title {
+    color: #c0c0c0;
+}
+
+#meals .content .meal-item-name .value {
+    color: #000000;
+}
+
+#meals .content .meal-item-control {
+    text-align: right;
+}
+
+#meals .dish .title {
+    color: #c0c0c0;
+}
+
+#meals .dish .value {
+    color: #000000;
+}
+
+#meals .dish .concept {
+    font-size: 1.6rem;
+}
+
+#meals .dish .ingredient {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #808080;
+}
+
+#dishes .content .dish-item-name {
+    line-height: 3rem;
+}
+
+#dishes .content .dish-item-name .title {
+    color: #c0c0c0;
+}
+
+#dishes .content .dish-item-name .value {
+    color: #000000;
+}
+
+#dishes .content .dish-item-control {
+    text-align: right;
+}
+
+#dishes .ingredient .title {
+    color: #c0c0c0;
+}
+
+#dishes .ingredient .value {
+    color: #000000;
+}
+
+#dishes .ingredient .concept {
+    font-size: 1.6rem;
+}
+
+#addMealCalories {
+    width: 20%;
+}
+
+#addMealModal label,#updateMealModal label {
+    text-align: right;
+    padding-top: 18px;
+}
+
+.row div {
+    margin-top: 10px;
+}
+
+#chooseCalories {
+    line-height: 36px;
+}
+
+#searchMeal {
+    width: 100px;
+    display: table-cell;
+}
+
+#searchMealBtn {
+    width: 69px;
+    height: 30px;
+    line-height: 15px;
+}
+
+#mealRight,
+#mealLeft {
+    height: 240px;
+    overflow: auto;
+}
+#mealLeft li,
+#mealRight li {
+    margin: 10px;
+    padding: 5px;
+}
+#mealLeft li.active,
+#mealRight li.active {
+    background-color: #eee;
+    color: darkorange;
+}
+#mealRight li.filter {
+    display: none;
+}
+#btnChoose {
+    text-align: center;
+}
+

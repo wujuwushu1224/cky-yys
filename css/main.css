@@ -1,0 +1,51 @@
+.warning{
+    display:none;
+    color: #ff0000;
+    text-align: center;
+}
+
+div.warning{
+    margin: 0.5rem 0;
+}
+
+.modal-dialog{
+    width: 35rem;
+    margin: 10rem auto auto auto;
+}
+
+.modal-dialog input{
+    width:20rem;
+}
+
+.modal-dialog .control-label{
+    font-size: 1.5rem;
+}
+
+.modal-dialog .control-panel{
+    margin-bottom: 0.5rem;
+}
+
+.modal-dialog .form-control{
+    width: 100%;
+}
+
+.modal-dialog .divider{
+    color: #c0c0c0;
+    font-size: 1.5rem;
+    text-align:center;
+    margin-bottom: 0.5rem;
+}
+
+.modal-dialog .container-lg{
+    margin-left: auto;
+    margin-right: auto;
+}
+ul,li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.modal-body-border{
+    border: 2px solid cornflowerblue;
+    border-radius: 5px;
+}
