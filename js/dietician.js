@@ -25,7 +25,7 @@ function init() {
         $(this).tab('show');
     });
     loadMealComposes();
-    getDishDate();
+    loadDishComposes();
     initDieticianEvents();
 }
 
@@ -36,11 +36,43 @@ function removeActive() {
 function initDieticianEvents() {
     $("#mealTab").on("click", "a", function () {
         loadMealComposes();
-        initDieticianEvents();
+        $(".deleteBtn").on("click", function () {
+            $("#delcfmMealModel").modal();
+            localStorage.setItem("mealId", this.id)
+        });
+        $(".updateMealBtn").on("click", function () {
+            selectDish = [];
+            unselectDish = [];
+            updateMeal.call(this);
+            localStorage.setItem("mealId", this.id)
+            dishLiArr = $("#mealRight").children("li");
+
+            $("#mealRight li").on("click", function () {
+                chooseMeal.call(this);
+            });
+            $("#mealLeft li").on("click", function () {
+                chooseMeal.call(this);
+            });
+            $("#btnAdd").on("click", function () {
+                addMeal();
+            });
+            $("#btnCancle").on("click", function () {
+                cancleMeal();
+            });
+            $("#searchMealBtn").on("click", function () {
+                if(unselectDish==""){
+                    unselectDish = dishAllData;
+                }
+                searchDishData(unselectDish)
+            });
+            $("#mealConfirm").on("click", function () {
+                confirmUpdateMeal();
+            });
+        });
     });
     $("#dishTab").on("click", "a", function () {
         loadDishComposes();
-        initDieticianEvents();
+
     });
     $("#mealComposeAdd").on("click", function () {
         selectDish = []; 
@@ -154,11 +186,9 @@ function loadDishComposes() {
         if (res == 0) {
             return;
         }
-
+        dishAllData=res.body;
         populateDishComposes(res.body);
-        $("#mealTab").on("click", "a", function () {
-            loadMealComposes();
-        });
+
     };
 
     serverRequest("get", serviceUrlPrefix + "/healthplan/dishcompose/all", data, callback);
@@ -397,6 +427,8 @@ function getMealComposeHtml(mealCompose) {
 function getMealType(typeCode) {
     if ("cnset" == typeCode) {
         return "中式套餐";
+    }else{
+        return "日式套餐";
     }
 }
 

@@ -282,16 +282,7 @@
  }
 
  //获取所有菜式的数据
- function getDishDate() {
-     var data = {};
-     var callback = function (res) {
-         if (res == 0) {
-             return;
-         }
-         dishAllData = res.body;
-     };
-     serverRequest("get", serviceUrlPrefix + "/healthplan/dishcompose/all", data, callback);
- }
+
 
 
  //删除套餐
@@ -449,7 +440,7 @@
      html += '</div>';
      html += '<ul id="mealRight" style="text-align:center" class="col-sm-5 modal-body-border">';
      for (var dishcompose of dishComposes) {
-         html += '<li dishComposeId=' + dishcompose.id + '>' + dishcompose.name + "&nbsp" + "(" + dishcompose.calories + ")" + "&nbsp" + dishcompose.size + '</li>';
+         html += '<li dishComposeId=' + dishcompose.id + '>' + dishcompose.name + "&nbsp" +  getDishSize(dishcompose.size)+ "&nbsp" +"(" + dishcompose.calories + ")" + '</li>';
      }
      html += '</ul>';
      html += '</div>';
@@ -481,8 +472,8 @@
      html += '<label class="col-sm-2">类型</label>';
      html += '<div class="col-sm-4">';
      html += "<select id='addMealType' class='form-control'>";
-     html += "<option value='cnset'>中式套餐</option>";
-     html += "<option value='jpset'>日式套餐</option>";
+     html += "<option value='cnset'>"+getMealType(mealCompose.type)+"</option>";
+     html += "<option value='jpset'>"+getMealType(mealCompose.type)+"</option>";
      html += "</select>";
      html += '</div>';
      html += ' <label class="col-sm-2">热量</label>';
@@ -512,7 +503,7 @@
      html += '<ul id="mealLeft" style="text-align:center" class="col-sm-5 modal-body-border">';
      for (var dishCompose of mealCompose.dishComposes) {
          // console.log(dishCompose)
-         html += '<li dishComposeId=' + dishCompose.id + '>' + dishCompose.name + "&nbsp" + "(" + dishCompose.calories + ")" + "&nbsp" + dishCompose.size + '</li>';
+         html += '<li dishComposeId=' + dishCompose.id + '>' + dishCompose.name + "&nbsp" + getDishSize(dishCompose.size)+ "&nbsp" +"(" + dishCompose.calories + ")" +  '</li>';
      }
      html += '</ul>';
      html += '<div id="btnChoose" class="col-sm-2">';
@@ -520,7 +511,7 @@
      html += '</div>';
      html += '<ul id="mealRight" style="text-align:center" class="col-sm-5 modal-body-border">';
      for (var dishAll of unselectDish) {
-         html += '<li dishComposeId=' + dishAll.id + '>' + dishAll.name + "&nbsp" + "(" + dishAll.calories + ")" + "&nbsp" + dishAll.size + '</li>';
+         html += '<li dishComposeId=' + dishAll.id + '>' + dishAll.name + "&nbsp" + "&nbsp" + getDishSize(dishAll.size) +"(" + dishAll.calories + ")" +  '</li>';
      }
      html += '</ul>';
      html += '</ul>';
